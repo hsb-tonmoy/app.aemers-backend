@@ -7,4 +7,4 @@ from simple_history.admin import SimpleHistoryAdmin
 @admin.register(PreApplicationForm)
 class PreApplicationFormAdmin(SimpleHistoryAdmin):
 
-    list_display = ('id', 'student')
+    list_display = ('id',)

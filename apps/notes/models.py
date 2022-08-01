@@ -1,9 +1,10 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from simple_history.models import HistoricalRecords
-from apps.student_data.models import StudentData
-from apps.accounts.models import Accounts
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 PRIORITY_CHOICES = (
     (1, 'Low'),
@@ -36,14 +37,14 @@ class Note(models.Model):
 
     history = HistoricalRecords()
 
-    student = models.ForeignKey(
-        StudentData, on_delete=models.CASCADE, related_name='notes')
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='notes')
     title = models.CharField(_("Title"), max_length=255)
     description = models.TextField(_("Description"), blank=True, null=True)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     created_by = models.ForeignKey(
-        Accounts, on_delete=models.SET_NULL, related_name='notes', null=True, blank=True)
+        User, on_delete=models.SET_NULL, related_name='my_notes', null=True, blank=True)
 
     category = models.ForeignKey(
         NoteCategory, on_delete=models.CASCADE, related_name='notes')

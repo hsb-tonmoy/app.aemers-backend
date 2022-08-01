@@ -15,7 +15,7 @@ class DocumentCategoryAdmin(SimpleHistoryAdmin):
 @admin.register(Document)
 class DocumentAdmin(SimpleHistoryAdmin):
 
-    list_display = ('title', 'category', 'student_data',
+    list_display = ('title', 'category',
                     'uploaded_at', 'is_approved', 'is_rejected', 'checked_by')
     search_fields = ('title', 'description')
     ordering = ('id',)

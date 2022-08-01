@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from apps.accounts.serializers import AccountsBriefSerializer
-from apps.student_data.serializers import StudentDataBriefSerializer
 from .models import Document, DocumentCategory
 
 
@@ -11,9 +10,9 @@ class DocumentCategorySerializer(serializers.ModelSerializer):
 
 
 class DocumentListSerializer(serializers.ModelSerializer):
-    category = DocumentCategorySerializer()
-    student_data = StudentDataBriefSerializer()
     checked_by = AccountsBriefSerializer()
+    user = AccountsBriefSerializer()
+    category = DocumentCategorySerializer()
 
     class Meta:
         model = Document

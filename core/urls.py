@@ -1,20 +1,18 @@
 from django.contrib import admin
-from django.conf import settings
 from django.urls import re_path, path, include
-from django.views.generic import RedirectView, TemplateView
+from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularRedocView, SpectacularSwaggerView
 
 from apps.accounts.views import FacebookLogin, GoogleLogin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/v1/', include('apps.student_data.urls', namespace='student_data')),
     path('api/v1/', include('apps.accounts.urls', namespace='accounts')),
     path('api/v1/', include('apps.notes.urls', namespace='notes')),
     path('api/v1/', include('apps.document_submission.urls',
          namespace='document_submission')),
-    path('api/v1/', include('apps.application_submission.urls',
-         namespace='application_submission')),
+    path('api/v1/', include('apps.pre_application_form.urls',
+         namespace='pre_application_form')),
     path('api/v1/auth/', include('dj_rest_auth.urls')),
     path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(r'^login/forgot/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',

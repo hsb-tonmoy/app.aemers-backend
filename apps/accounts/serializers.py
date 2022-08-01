@@ -14,7 +14,6 @@ from dj_rest_auth.serializers import UserDetailsSerializer
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from notifications.models import Notification
 from .models import Accounts, ClientFollowing
-from apps.student_data.serializers import StudentDataListSerializer, StudentDataBriefSerializer
 
 User = get_user_model()
 
@@ -31,12 +30,12 @@ class RegistrationSerializer(RegisterSerializer):
 
 
 class CustomUserDetailsSerializer(UserDetailsSerializer):
-    profile_pic = serializers.ImageField()
+    profile_pic = serializers.ImageField(source="profile.profile_pic")
 
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'first_name',
-                  'last_name', 'account_type', 'profile_pic', 'student_id')
+                  'last_name', 'account_type', 'profile_pic',)
         read_only_fields = ('email', 'username')
 
 
@@ -49,7 +48,6 @@ class AccountsBriefSerializer(serializers.ModelSerializer):
 
 
 class AccountsListSerializer(serializers.ModelSerializer):
-    student = StudentDataBriefSerializer()
 
     class Meta:
         model = Accounts
@@ -57,7 +55,6 @@ class AccountsListSerializer(serializers.ModelSerializer):
 
 
 class AccountsRetrieveSerializer(serializers.ModelSerializer):
-    student = StudentDataListSerializer()
 
     class Meta:
         model = Accounts

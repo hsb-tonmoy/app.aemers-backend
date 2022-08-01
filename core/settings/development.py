@@ -110,7 +110,6 @@ LOCAL_APPS = [
     'apps.notes',
     'apps.document_submission',
     'apps.pre_application_form',
-    'apps.knowledgebase',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
