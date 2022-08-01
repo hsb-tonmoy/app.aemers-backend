@@ -1,0 +1,38 @@
+<table>
+  <tr>
+    <th>Curriculum</th>
+    <th>Level</th>
+    <th>GPA</th>
+    <th>Year</th>
+  </tr>
+  {%for data in widget.value %}
+
+  <tr>
+    <td>{{data.curriculum}}</td>
+    <td>{{data.level}}</td>
+    <td>{{data.GPA}}</td>
+    <td>{{data.Year}}</td>
+  </tr>
+  {% endfor %}
+</table>
+<textarea
+  id="{{widget.attrs.id}}_textarea"
+  name="{{ widget.name }}"
+  required=""
+  style="display: none"
+>
+{{ widget.value }}</textarea
+>
+
+<script>
+  (function() {
+
+
+      let textarea = document.getElementById("{{widget.attrs.id}}_textarea");
+
+      let json = {{ widget.value|safe }};
+
+      textarea.value=JSON.stringify(json);
+
+  })();
+</script>
