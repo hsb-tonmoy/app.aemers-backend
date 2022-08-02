@@ -135,21 +135,24 @@ class Profile(models.Model):
 
     # Personal Information
 
-    name = models.CharField(_("Your Name"), max_length=255)
-    country = models.CharField(_("Country"), max_length=255)
-    phone = models.CharField(_("Phone"), max_length=255)
+    name = models.CharField(
+        _("Your Name"), max_length=255, null=True, blank=True)
+    country = models.CharField(
+        _("Country"), max_length=255, null=True, blank=True)
+    phone = models.CharField(_("Phone"), max_length=255, null=True, blank=True)
 
     # Degree
 
-    degree = models.CharField(_("Degree"), max_length=255)
+    degree = models.CharField(
+        _("Degree"), max_length=255, null=True, blank=True)
 
     # Major
 
-    major = models.CharField(_("Major"), max_length=255)
+    major = models.CharField(_("Major"), max_length=255, null=True, blank=True)
 
     # Education
 
-    education = models.JSONField(_("Education"))
+    education = models.JSONField(_("Education"), null=True, blank=True)
 
     # English Proficiency
 
