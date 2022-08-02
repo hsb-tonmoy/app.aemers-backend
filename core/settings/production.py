@@ -10,8 +10,8 @@ DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 DEBUG = False
 SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', False)
 
-ALLOWED_HOSTS = ['api.mrashid.net', '127.0.0.1', '0.0.0.0',
-                 'localhost', 'app-mrashid.herokuapp.com']
+ALLOWED_HOSTS = ['api.aemers.com', '127.0.0.1', '0.0.0.0',
+                 'localhost']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
