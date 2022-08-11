@@ -6,7 +6,6 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from simple_history.models import HistoricalRecords
 
-from apps import pre_application_form
 from .utils import random_username
 from random import randint
 from .managers import AccountsManager
@@ -135,8 +134,6 @@ class Profile(models.Model):
 
     # Personal Information
 
-    name = models.CharField(
-        _("Your Name"), max_length=255, null=True, blank=True)
     country = models.CharField(
         _("Country"), max_length=255, null=True, blank=True)
     phone = models.CharField(_("Phone"), max_length=255, null=True, blank=True)
@@ -174,6 +171,9 @@ class Profile(models.Model):
 
     rating = models.PositiveSmallIntegerField(
         _("Rating"), choices=PRIORITY_RATINGS, default=1)
+
+    def __str__(self):
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 STEP_STATUS = (

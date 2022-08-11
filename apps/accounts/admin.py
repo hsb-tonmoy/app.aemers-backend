@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Accounts, ClientFollowing
+from .models import Accounts, Profile, ClientFollowing
 
 
 class AccountsAdmin(UserAdmin, SimpleHistoryAdmin):
@@ -13,7 +13,7 @@ class AccountsAdmin(UserAdmin, SimpleHistoryAdmin):
                    'is_staff', 'is_active',)
     fieldsets = (
         (None, {'fields': ('email', 'username',
-         'first_name', 'last_name', 'profile_pic', 'password')}),
+         'first_name', 'last_name', 'password')}),
         ('Permissions', {'fields': ('account_type', 'is_staff', 'is_active')}),
         ('Other', {'fields': ('date_joined',)}),
     )
@@ -27,9 +27,14 @@ class AccountsAdmin(UserAdmin, SimpleHistoryAdmin):
     ordering = ('id',)
 
 
+class ProfileAdmin(SimpleHistoryAdmin):
+    model = Profile
+
+
 class ClientFollowingAdmin(SimpleHistoryAdmin):
     model = ClientFollowing
 
 
 admin.site.register(Accounts, AccountsAdmin)
+admin.site.register(Profile, ProfileAdmin)
 admin.site.register(ClientFollowing, ClientFollowingAdmin)
