@@ -1,7 +1,6 @@
 import django_filters.rest_framework
 from rest_framework import viewsets
 from rest_framework import filters
-from rest_framework.fields import CurrentUserDefault
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
@@ -12,9 +11,9 @@ from django.conf import settings
 
 from notifications.models import Notification
 
-from .models import Accounts, ClientFollowing
-from .serializers import AccountsListSerializer, AccountsRetrieveSerializer, AccountsUpdateSerializer, ClientFollowingSerializer, NotificationSerializer
-from .permissions import OnlyAdminandStaffCanRetrieve
+from apps.accounts.models import Accounts, Profile, ClientFollowing
+from apps.accounts.serializers import AccountsListSerializer, AccountsRetrieveSerializer, AccountsUpdateSerializer, ClientFollowingSerializer, NotificationSerializer
+from apps.accounts.permissions import OnlyAdminandStaffCanRetrieve
 
 GOOGLE_OAUTH_CALLBACK_URL = settings.GOOGLE_OAUTH_CALLBACK_URL
 
@@ -51,6 +50,10 @@ class AccountsViewset(viewsets.ModelViewSet):
                 return self.update_serializer_class
 
         return super(AccountsViewset, self).get_serializer_class()
+
+
+class ProfileViewset(viewsets.ModelViewSet):
+    queryset = Profile.objects.all()
 
 
 class ClientFollowingViewset(viewsets.ModelViewSet):

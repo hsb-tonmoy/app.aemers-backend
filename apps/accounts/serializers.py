@@ -1,5 +1,6 @@
 from dj_rest_auth.serializers import PasswordResetSerializer
 from dj_rest_auth.forms import AllAuthPasswordResetForm
+from drf_writable_nested.mixins import NestedUpdateMixin
 from allauth.utils import build_absolute_uri
 from allauth.account.utils import user_pk_to_url_str, user_username
 from allauth.account.adapter import get_adapter
@@ -8,12 +9,11 @@ from django.urls.base import reverse
 from django.contrib.sites.shortcuts import get_current_site
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.auth import get_user_model
-from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
 from dj_rest_auth.serializers import UserDetailsSerializer
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from notifications.models import Notification
-from .models import Accounts, ClientFollowing
+from apps.accounts.models import Accounts, ClientFollowing, Profile
 
 User = get_user_model()
 
@@ -61,7 +61,13 @@ class AccountsRetrieveSerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
-class AccountsUpdateSerializer(serializers.ModelSerializer):
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = "__all__"
+
+
+class AccountsUpdateSerializer(NestedUpdateMixin):
     # password = serializers.CharField(write_only=True, required=False)
 
     # def create(self, validated_data):
@@ -78,9 +84,11 @@ class AccountsUpdateSerializer(serializers.ModelSerializer):
     #     user.save()
     #     return user
 
+    profile = ProfileSerializer(required=False)
+
     class Meta:
         model = Accounts
-        fields = "__all__"
+        exclude = ('password', )
 
 
 '''

@@ -6,9 +6,9 @@ from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 from simple_history.models import HistoricalRecords
 
-from .utils import random_username
+from apps.accounts.utils import random_username
 from random import randint
-from .managers import AccountsManager
+from apps.accounts.managers import AccountsManager
 
 
 def upload_to_path(instance, filename):
@@ -147,10 +147,6 @@ class Profile(models.Model):
 
     major = models.CharField(_("Major"), max_length=255, null=True, blank=True)
 
-    # Education
-
-    education = models.JSONField(_("Education"), null=True, blank=True)
-
     # English Proficiency
 
     english_proficiency = models.CharField(
@@ -164,13 +160,18 @@ class Profile(models.Model):
     message = models.TextField(
         _("Message"), blank=True, null=True)
 
-    # Internal Fields
+    # Manager Fields
 
     status = models.PositiveSmallIntegerField(
         _("Status"), choices=STATUS_CHOICES, default=0)
 
     rating = models.PositiveSmallIntegerField(
         _("Rating"), choices=PRIORITY_RATINGS, default=1)
+
+    # Internal Fields
+
+    isEvaluated = models.BooleanField(default=False)
+    isNewApplicant = models.BooleanField(default=True)
 
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
