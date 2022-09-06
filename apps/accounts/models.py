@@ -225,7 +225,7 @@ class ApplicationStatus(models.Model):
         _("Welcome to USA"), choices=STEP_STATUS, default=0)
 
     def __str__(self):
-        return self.name
+        return f"{self.user.first_name} {self.user.last_name}"
 
 
 class ClientFollowing(models.Model):

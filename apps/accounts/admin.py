@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from simple_history.admin import SimpleHistoryAdmin
 
-from .models import Accounts, Profile, ClientFollowing
+from apps.accounts.models import Accounts, ApplicationStatus, Profile, ClientFollowing
 
 
 class AccountsAdmin(UserAdmin, SimpleHistoryAdmin):
@@ -31,10 +31,15 @@ class ProfileAdmin(SimpleHistoryAdmin):
     model = Profile
 
 
+class ApplicationStatusAdmin(SimpleHistoryAdmin):
+    model = ApplicationStatus
+
+
 class ClientFollowingAdmin(SimpleHistoryAdmin):
     model = ClientFollowing
 
 
 admin.site.register(Accounts, AccountsAdmin)
 admin.site.register(Profile, ProfileAdmin)
+admin.site.register(ApplicationStatus, ApplicationStatusAdmin)
 admin.site.register(ClientFollowing, ClientFollowingAdmin)

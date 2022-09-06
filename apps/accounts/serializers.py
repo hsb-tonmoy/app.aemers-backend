@@ -13,7 +13,7 @@ from rest_framework import serializers
 from dj_rest_auth.serializers import UserDetailsSerializer
 from dj_rest_auth.registration.serializers import RegisterSerializer
 from notifications.models import Notification
-from apps.accounts.models import Accounts, ClientFollowing, Profile
+from apps.accounts.models import Accounts, ApplicationStatus, ClientFollowing, Profile
 
 User = get_user_model()
 
@@ -139,6 +139,20 @@ class CustomPasswordResetSerializer(PasswordResetSerializer):
     @property
     def password_reset_form_class(self):
         return CustomAllAuthPasswordResetForm
+
+
+class ApplicationStatusSerializer(serializers.ModelSerializer):
+
+    progress_percentage = serializers.SerializerMethodField()
+
+    def get_progress_percentage(self, obj):
+        steps = []
+        percent = (
+            len([ele for ele in steps if ele == True]) / len(steps)) * 100
+
+    class Meta:
+        model = ApplicationStatus
+        fields = '__all__'
 
 
 class ClientFollowingSerializer(serializers.ModelSerializer):

@@ -11,8 +11,8 @@ from django.conf import settings
 
 from notifications.models import Notification
 
-from apps.accounts.models import Accounts, Profile, ClientFollowing
-from apps.accounts.serializers import AccountsListSerializer, AccountsRetrieveSerializer, AccountsUpdateSerializer, ClientFollowingSerializer, NotificationSerializer
+from apps.accounts.models import Accounts, ApplicationStatus, Profile, ClientFollowing
+from apps.accounts.serializers import AccountsListSerializer, AccountsRetrieveSerializer, AccountsUpdateSerializer, ApplicationStatusSerializer, ClientFollowingSerializer, NotificationSerializer
 from apps.accounts.permissions import OnlyAdminandStaffCanRetrieve
 
 GOOGLE_OAUTH_CALLBACK_URL = settings.GOOGLE_OAUTH_CALLBACK_URL
@@ -54,6 +54,13 @@ class AccountsViewset(viewsets.ModelViewSet):
 
 class ProfileViewset(viewsets.ModelViewSet):
     queryset = Profile.objects.all()
+
+
+class ApplicationStatusViewset(viewsets.ModelViewSet):
+    queryset = ApplicationStatus.objects.all()
+    serializer_class = ApplicationStatusSerializer
+    permission_classes = [IsAuthenticated]
+    lookup_field = 'user'
 
 
 class ClientFollowingViewset(viewsets.ModelViewSet):

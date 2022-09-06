@@ -4,8 +4,8 @@ from django.contrib.auth.models import Group
 from django.dispatch import receiver
 from django.template.loader import get_template
 from post_office import mail
-from .utils import generate_unique_username
-from .models import Profile
+from apps.accounts.utils import generate_unique_username
+from apps.accounts.models import ApplicationStatus, Profile
 import datetime
 import pytz
 import sys
@@ -25,10 +25,17 @@ def username_add(sender, instance, created, **kwargs):
 
 
 @receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+
+@receiver(post_save, sender=User)
+def create_user_application_status(sender, instance, created, **kwargs):
+    if created:
+        ApplicationStatus.objects.create(user=instance)
+    instance.application.save()
 
 
 @receiver(post_save, sender=User)
