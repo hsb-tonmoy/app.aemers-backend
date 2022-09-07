@@ -12,7 +12,7 @@ from django.conf import settings
 from notifications.models import Notification
 
 from apps.accounts.models import Accounts, ApplicationStatus, Profile, ClientFollowing
-from apps.accounts.serializers import AccountsListSerializer, AccountsRetrieveSerializer, AccountsUpdateSerializer, ApplicationStatusSerializer, ClientFollowingSerializer, NotificationSerializer
+from apps.accounts.serializers import AccountsListSerializer, AccountsUpdateSerializer, ApplicationStatusSerializer, ClientFollowingSerializer, NotificationSerializer
 from apps.accounts.permissions import OnlyAdminandStaffCanRetrieve
 
 GOOGLE_OAUTH_CALLBACK_URL = settings.GOOGLE_OAUTH_CALLBACK_URL
@@ -30,7 +30,7 @@ class GoogleLogin(SocialLoginView):
 
 class AccountsViewset(viewsets.ModelViewSet):
     queryset = Accounts.objects.all()
-    serializer_class = AccountsRetrieveSerializer
+    serializer_class = AccountsUpdateSerializer
     pagination_class = LimitOffsetPagination
     permission_classes = [IsAuthenticated, OnlyAdminandStaffCanRetrieve]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
