@@ -6,11 +6,20 @@ from django.template.loader import get_template
 from post_office import mail
 from apps.accounts.utils import generate_unique_username
 from apps.accounts.models import ApplicationStatus, Profile
+from notifications.signals import notify
 import datetime
 import pytz
 import sys
 
 User = get_user_model()
+
+
+@receiver(post_save, sender=User)
+def account_update_notification(sender, instance, created, **kwargs):
+    if created:
+        return
+    notify.send(instance, recipient=instance, verb='updated account', action_object=instance,
+                description=f'You have updated your account')
 
 
 @receiver(post_save, sender=User)
