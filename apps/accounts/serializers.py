@@ -169,7 +169,6 @@ class ClientFollowingSerializer(serializers.ModelSerializer):
 
 
 class NotificationSerializer(serializers.ModelSerializer):
-    actor = AccountsBriefSerializer(read_only=True)
 
     class Meta:
         model = Notification
