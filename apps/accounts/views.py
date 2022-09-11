@@ -76,5 +76,12 @@ class NotificationViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        params = self.request.query_params
         user = self.request.user
-        return user.notifications.unread()
+        queryset = user.notifications.unread()
+        if params.get('markAsRead') == 'true':
+            queryset.mark_all_as_read()
+        if params.get('all') == 'true':
+            read_notifications = user.notifications.read()
+            return queryset | read_notifications
+        return queryset
