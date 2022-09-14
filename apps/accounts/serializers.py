@@ -143,21 +143,21 @@ class CustomPasswordResetSerializer(PasswordResetSerializer):
 
 class ApplicationStatusSerializer(serializers.ModelSerializer):
 
-    progress_percentage = serializers.SerializerMethodField()
+    # progress_percentage = serializers.SerializerMethodField()
 
-    def get_progress_percentage(self, obj):
-        steps = [obj.file_opening, obj.orientation, obj.pre_application_form, obj.documents_upload, obj.i_20_upload,
-                 obj.ds_160_filed, obj.sevis_payment, obj.visa_fee_payment, obj.visa_interview, obj.pre_departure_session, obj.welcome_to_usa]
-        percent = (
-            len([ele for ele in steps if ele == 2]) / len(steps)) * 100
+    # def get_progress_percentage(self, obj):
+    #     steps = [obj.file_opening, obj.orientation, obj.pre_application_form, obj.documents_upload, obj.i_20_upload,
+    #              obj.ds_160_filed, obj.sevis_payment, obj.visa_fee_payment, obj.visa_interview, obj.pre_departure_session, obj.welcome_to_usa]
+    #     percent = (
+    #         len([ele for ele in steps if ele == 2]) / len(steps)) * 100
 
-        # Round to nearest multiple of 10
-        percent = round(percent / 10) * 10
-        return percent
+    #     # Round to nearest multiple of 10
+    #     percent = round(percent / 10) * 10
+    #     return percent
 
     class Meta:
         model = ApplicationStatus
-        fields = '__all__'
+        exclude = ('id', 'user', )
 
 
 class ClientFollowingSerializer(serializers.ModelSerializer):
