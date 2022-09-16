@@ -168,11 +168,6 @@ class Profile(models.Model):
     rating = models.PositiveSmallIntegerField(
         _("Rating"), choices=PRIORITY_RATINGS, default=1)
 
-    # Internal Fields
-
-    isEvaluated = models.BooleanField(default=False)
-    isNewApplicant = models.BooleanField(default=True)
-
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
@@ -199,6 +194,7 @@ class ApplicationStatus(models.Model):
 
     # Application Steps
 
+    isEvaluated = models.BooleanField(default=False)
     application_started = models.BooleanField(
         _("Application Started?"), default=False)
     file_opening = models.PositiveSmallIntegerField(

@@ -31,13 +31,12 @@ class RegistrationSerializer(RegisterSerializer):
 
 class CustomUserDetailsSerializer(UserDetailsSerializer):
     profile_pic = serializers.ImageField(source="profile.profile_pic")
-    isEvaluated = serializers.BooleanField(source="profile.isEvaluated")
 
     class Meta:
         model = User
         fields = ('pk', 'username', 'email', 'first_name',
-                  'last_name', 'account_type', 'profile_pic', 'isEvaluated')
-        read_only_fields = ('email', 'username', 'isEvaluated')
+                  'last_name', 'account_type', 'profile_pic',)
+        read_only_fields = ('email', 'username',)
 
 
 class AccountsBriefSerializer(serializers.ModelSerializer):
