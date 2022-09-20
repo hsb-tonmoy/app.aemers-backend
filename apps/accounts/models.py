@@ -199,8 +199,6 @@ class ApplicationStatus(models.Model):
         _("Application Started?"), default=False)
     file_opening = models.PositiveSmallIntegerField(
         _("File Opening"), choices=STEP_STATUS, default=0)
-    orientation = models.PositiveSmallIntegerField(
-        _("Orientation"), choices=STEP_STATUS, default=0)
     pre_application_form = models.PositiveSmallIntegerField(
         _("Pre-Application Form"), choices=STEP_STATUS, default=0)
     documents_upload = models.PositiveSmallIntegerField(
