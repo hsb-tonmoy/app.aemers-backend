@@ -24,8 +24,8 @@ class PreApplicationForm(models.Model):
     # Personal Information
 
     first_name = models.CharField(_("First Name"), max_length=255)
-    middle_initials = models.CharField(
-        _("Middle Initials"), max_length=255, blank=True, null=True)
+    middle_name = models.CharField(
+        _("Middle Name"), max_length=255, blank=True, null=True)
     last_name = models.CharField(_("Last Name"), max_length=255)
     email = models.EmailField(_("Email"), max_length=255, unique=True)
     phone = models.CharField(_("Phone"), max_length=255)
