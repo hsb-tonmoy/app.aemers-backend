@@ -155,41 +155,22 @@ class PreApplicationForm(models.Model):
     english_proficiency_score = models.CharField(
         _("English Proficiency Score"), max_length=255, null=True, blank=True)
 
-    # 4a) IELTS
+    english_proficiency_date_of_examination = models.DateField(
+        _("English Proficiency Test Date"), null=True, blank=True)
 
-    ielts_waivers = models.BooleanField(_("IELTS Waiver?"), default=False)
-    ielts_date_of_examination = models.DateField(
-        _("Date of Examination"), null=True, blank=True)
-    ielts_listening = models.CharField(
-        _("IELTS Listening"), max_length=5, null=True, blank=True)
-    ielts_speaking = models.CharField(
-        _("IELTS Speaking"), max_length=5, null=True, blank=True)
-    ielts_reading = models.CharField(
-        _("IELTS Reading"), max_length=5, null=True, blank=True)
-    ielts_writing = models.CharField(
-        _("IELTS Writing"), max_length=5, null=True, blank=True)
-    ielts_trf_no = models.CharField(
-        _("IELTS TRF No"), max_length=255, null=True, blank=True)
+    english_proficiency_trf_no = models.CharField(
+        _("English Proficiency TRF No."), max_length=255, null=True, blank=True)
 
-    # 4b) Duolingo
-
-    duolingo_date_of_examination = models.DateField(
-        _("Date of Examination"), null=True, blank=True)
-
-    # 4c) TOEFL
-
-    toefl_date_of_examination = models.DateField(
-        _("Date of Examination"), null=True, blank=True)
-    toefl_listening = models.CharField(
-        _("TOEFL Listening"), max_length=5, null=True, blank=True)
-    toefl_speaking = models.CharField(
-        _("TOEFL Speaking"), max_length=5, null=True, blank=True)
-    toefl_reading = models.CharField(
-        _("TOEFL Reading"), max_length=5, null=True, blank=True)
-    toefl_writing = models.CharField(
-        _("TOEFL Writing"), max_length=5, null=True, blank=True)
-    toefl_trf_no = models.CharField(
-        _("TOEFL TRF No"), max_length=255, null=True, blank=True)
+    english_proficiency_waivers = models.BooleanField(
+        _("English Proficiency Waiver?"), default=False)
+    english_proficiency_listening = models.CharField(
+        _("English Proficiency Listening"), max_length=5, null=True, blank=True)
+    english_proficiency_speaking = models.CharField(
+        _("English Proficiency Speaking"), max_length=5, null=True, blank=True)
+    english_proficiency_reading = models.CharField(
+        _("English Proficiency Reading"), max_length=5, null=True, blank=True)
+    english_proficiency_writing = models.CharField(
+        _("English Proficiency Writing"), max_length=5, null=True, blank=True)
 
     # 4d) SAT
 
