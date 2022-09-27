@@ -152,13 +152,14 @@ class PreApplicationForm(models.Model):
     english_proficiency = models.CharField(
         _("English Proficiency"), max_length=255, null=True, blank=True)
 
+    english_proficiency_score = models.CharField(
+        _("English Proficiency Score"), max_length=255, null=True, blank=True)
+
     # 4a) IELTS
 
     ielts_waivers = models.BooleanField(_("IELTS Waiver?"), default=False)
     ielts_date_of_examination = models.DateField(
         _("Date of Examination"), null=True, blank=True)
-    ielts_score = models.CharField(
-        _("IELTS Score"), max_length=5, null=True, blank=True)
     ielts_listening = models.CharField(
         _("IELTS Listening"), max_length=5, null=True, blank=True)
     ielts_speaking = models.CharField(
@@ -172,15 +173,11 @@ class PreApplicationForm(models.Model):
 
     # 4b) Duolingo
 
-    duolingo_score = models.CharField(
-        _("DET Score"), max_length=5, null=True, blank=True)
     duolingo_date_of_examination = models.DateField(
         _("Date of Examination"), null=True, blank=True)
 
     # 4c) TOEFL
 
-    toefl_score = models.CharField(
-        _("TOEFL Score"), max_length=5, null=True, blank=True)
     toefl_date_of_examination = models.DateField(
         _("Date of Examination"), null=True, blank=True)
     toefl_listening = models.CharField(
