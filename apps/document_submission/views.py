@@ -1,8 +1,7 @@
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-
-from .models import Document, DocumentCategory
-from .serializers import DocumentCategorySerializer, DocumentListSerializer, DocumentCreateSerializer
+from apps.document_submission.models import Document, DocumentCategory
+from apps.document_submission.serializers import DocumentCategorySerializer, DocumentListSerializer, DocumentCreateSerializer
 
 
 class DocumentCategoryViewset(viewsets.ModelViewSet):
@@ -11,11 +10,11 @@ class DocumentCategoryViewset(viewsets.ModelViewSet):
 
 
 class DocumentViewset(viewsets.ModelViewSet):
+    # parser_classes = [FormParser, MultiPartParser]
     queryset = Document.objects.all()
     serializer_class = DocumentCreateSerializer
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['student_data', 'category__slug',
-                        'is_approved', 'is_rejected', 'checked_by']
+    filterset_fields = ['student_data', 'category__slug', 'checked_by']
 
     list_serializer_class = DocumentListSerializer
 
