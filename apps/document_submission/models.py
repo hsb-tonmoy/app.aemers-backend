@@ -27,6 +27,13 @@ def upload_to_path(instance, filename):
     return path
 
 
+DOCUMENT_STATUS = (
+    (0, "Pending"),
+    (1, "Accepted"),
+    (2, "Rejected"),
+)
+
+
 class Document(models.Model):
 
     class Meta:
@@ -43,11 +50,11 @@ class Document(models.Model):
     description = models.TextField(blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     document = models.FileField(upload_to=upload_to_path)
-
-    is_approved = models.BooleanField(default=False)
-    is_rejected = models.BooleanField(default=False)
     checked_by = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, blank=True, related_name='approved_documents')
+        User, on_delete=models.SET_NULL, null=True, blank=True, related_name='checked_documents')
+
+    status = models.PositiveSmallIntegerField(
+        _("Status"), choices=DOCUMENT_STATUS, default=0)
 
     def __str__(self):
         return self.title
