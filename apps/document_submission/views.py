@@ -1,6 +1,5 @@
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-
 from apps.document_submission.models import Document, DocumentCategory
 from apps.document_submission.serializers import DocumentCategorySerializer, DocumentListSerializer, DocumentCreateSerializer
 
