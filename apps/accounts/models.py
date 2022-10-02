@@ -203,6 +203,8 @@ class ApplicationStatus(models.Model):
         _("Pre-Application Form"), choices=STEP_STATUS, default=0)
     documents_upload = models.PositiveSmallIntegerField(
         _("Documents Upload"), choices=STEP_STATUS, default=0)
+    application_submission = models.PositiveSmallIntegerField(
+        _("Application Submission"), choices=STEP_STATUS, default=0)
     i_20_upload = models.PositiveSmallIntegerField(
         _("I-20 Upload"), choices=STEP_STATUS, default=0)
     ds_160_filed = models.PositiveSmallIntegerField(
