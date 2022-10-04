@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from simple_history.models import HistoricalRecords
 
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -10,6 +11,8 @@ class DocumentCategory(models.Model):
         verbose_name = _("Document Category")
         verbose_name_plural = _("Document Categories")
         ordering = ["code"]
+
+    history = HistoricalRecords()
 
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
@@ -45,6 +48,8 @@ class Document(models.Model):
 
     category = models.ForeignKey(
         DocumentCategory, on_delete=models.CASCADE, related_name='documents')
+
+    history = HistoricalRecords()
 
     title = models.CharField(max_length=255, blank=True)
     description = models.TextField(blank=True)

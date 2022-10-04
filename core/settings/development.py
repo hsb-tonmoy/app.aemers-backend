@@ -110,6 +110,7 @@ LOCAL_APPS = [
     'apps.notes',
     'apps.document_submission',
     'apps.pre_application_form',
+    'apps.i_20_upload',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
