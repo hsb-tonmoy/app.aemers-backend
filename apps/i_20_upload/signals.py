@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
-@receiver(post_save, sender=DS160)
+@receiver(post_save, sender=I_20_Upload)
 def update_application_status(sender, instance, created, **kwargs):
     if instance.status == 1:
         instance.user.application.i_20_upload = 2
