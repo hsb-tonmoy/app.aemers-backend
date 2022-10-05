@@ -111,6 +111,9 @@ LOCAL_APPS = [
     'apps.document_submission',
     'apps.pre_application_form',
     'apps.i_20_upload',
+    'apps.ds_160',
+    'apps.sevis_payment',
+    'apps.visa_fee_payment'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
