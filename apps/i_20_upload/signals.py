@@ -10,6 +10,16 @@ from django.contrib.auth import get_user_model
 User = get_user_model()
 
 
+@receiver(post_save, sender=DS160)
+def update_application_status(sender, instance, created, **kwargs):
+    if instance.status == 1:
+        instance.user.application.i_20_upload = 2
+        instance.user.save()
+    else:
+        instance.user.application.i_20_upload = 0
+        instance.user.save()
+
+
 @receiver(post_save, sender=I_20_Upload)
 def create_ds_160_if_not_exists(sender, instance, created, **kwargs):
     try:
