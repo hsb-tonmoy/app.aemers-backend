@@ -1,9 +1,10 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 from apps.i_20_upload.models import I_20_Upload
 from apps.ds_160.models import DS160
 from apps.sevis_payment.models import SEVIS_PAYMENT
 from apps.visa_fee_payment.models import VisaFeePayment
+from notifications.signals import notify
 
 from django.contrib.auth import get_user_model
 
@@ -15,9 +16,20 @@ def update_application_status(sender, instance, created, **kwargs):
     if instance.status == 1:
         instance.user.application.i_20_upload = 2
         instance.user.save()
+        notify.send(instance, recipient=instance.user, verb='approved I-20', action_object=instance,
+                    level='success',  description=f'Your I-20 has been accepted!')
     else:
         instance.user.application.i_20_upload = 0
         instance.user.save()
+        if not created:
+            notify.send(instance, recipient=instance.user, verb='rejected I-20', action_object=instance,
+                        level='error',  description=f'Your I-20 has been rejected!')
+
+
+@receiver(pre_delete, sender=I_20_Upload)
+def update_application_status_if_deleted(sender, instance, created, **kwargs):
+    instance.user.application.i_20_upload = 0
+    instance.user.save()
 
 
 @receiver(post_save, sender=I_20_Upload)
