@@ -19,6 +19,8 @@ urlpatterns = [
     path('api/v1/', include('apps.sevis_payment.urls', namespace='sevis_payment')),
     path('api/v1/', include('apps.visa_fee_payment.urls',
          namespace='visa_fee_payment')),
+    path('api/v1/', include('apps.visa_interview.urls',
+         namespace='visa_interview')),
     path('api/v1/auth/', include('dj_rest_auth.urls')),
     path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(r'^login/forgot/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',

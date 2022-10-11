@@ -23,6 +23,8 @@ DOCUMENT_STATUS = (
 class I_20_Upload(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, related_name="i_20")
+    title = models.CharField(
+        _('Title'),  max_length=255, blank=True, null=True)
     document = models.FileField(upload_to=upload_to_path)
     uploaded_at = models.DateTimeField(_('Uploaded At'), auto_now_add=True)
     status = models.PositiveSmallIntegerField(
