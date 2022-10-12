@@ -13,7 +13,6 @@ from notifications.models import Notification
 
 from apps.accounts.models import Accounts, ApplicationStatus, Profile, ClientFollowing
 from apps.accounts.serializers import AccountsListSerializer, AccountsUpdateSerializer, ApplicationStatusSerializer, ClientFollowingSerializer, NotificationSerializer
-from apps.accounts.permissions import OnlyAdminandStaffCanRetrieve
 
 GOOGLE_OAUTH_CALLBACK_URL = settings.GOOGLE_OAUTH_CALLBACK_URL
 
@@ -32,7 +31,7 @@ class AccountsViewset(viewsets.ModelViewSet):
     queryset = Accounts.objects.all()
     serializer_class = AccountsUpdateSerializer
     pagination_class = LimitOffsetPagination
-    permission_classes = [IsAuthenticated, OnlyAdminandStaffCanRetrieve]
+    permission_classes = [IsAuthenticated]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     search_fields = ['first_name', 'last_name', 'email', ]
     lookup_field = 'username'

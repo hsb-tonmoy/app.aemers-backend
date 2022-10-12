@@ -4,7 +4,6 @@ from django.contrib.auth.models import Group
 from django.dispatch import receiver
 from django.template.loader import get_template
 from post_office import mail
-from apps.accounts.utils import generate_unique_username
 from apps.accounts.models import ApplicationStatus, Profile
 import datetime
 import pytz
@@ -13,15 +12,15 @@ import sys
 User = get_user_model()
 
 
-@receiver(post_save, sender=User)
-def username_add(sender, instance, created, **kwargs):
-    if created:
-        if instance.first_name and instance.last_name:
-            username = generate_unique_username(
-                instance.first_name + instance.last_name)
-        else:
-            return
-        instance.username = username
+# @receiver(post_save, sender=User)
+# def username_add(sender, instance, created, **kwargs):
+#     if created:
+#         if instance.first_name and instance.last_name:
+#             username = generate_unique_username(
+#                 instance.first_name + instance.last_name)
+#         else:
+#             return
+#         instance.username = username
 
 
 @receiver(post_save, sender=User)
