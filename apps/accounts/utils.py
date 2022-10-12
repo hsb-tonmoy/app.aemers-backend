@@ -1,6 +1,5 @@
 import random
 import string
-from django.db.models import Q
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ImproperlyConfigured
 from django.core.validators import ValidationError
@@ -11,7 +10,7 @@ USERNAME_SUFFIX_CHARS = [string.digits] * 4 + [string.ascii_letters] * (
 )
 
 
-def random_username(size=7, chars=string.ascii_uppercase + string.digits):
+def random_username(size=7, chars=string.ascii_lowercase + string.digits):
 
     return ''.join(random.choice(chars) for _ in range(size))
 
