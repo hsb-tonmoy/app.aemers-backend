@@ -257,8 +257,8 @@ REST_FRAMEWORK = {
 # --------------------------------------------------------------------------
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'app-mrashid-api',
-    'DESCRIPTION': 'REST API for app.mrashid.net',
+    'TITLE': 'app-aemers-api',
+    'DESCRIPTION': 'REST API for app.aemers.com',
     'VERSION': '1.0.0',
 }
 
@@ -273,7 +273,7 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_USERNAME_REQUIRED = False
 OLD_PASSWORD_FIELD_ENABLED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
-ACCOUNT_EMAIL_SUBJECT_PREFIX = "app.mrashid.net - "
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "app.aemers.com - "
 
 ACCOUNT_EMAIL_CONFIRMATION_URL = os.getenv('ACCOUNT_EMAIL_CONFIRMATION_URL')
 
