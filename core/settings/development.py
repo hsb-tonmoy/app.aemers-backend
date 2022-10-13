@@ -108,6 +108,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     'apps.accounts',
     'apps.notes',
+    'apps.file_opening',
     'apps.document_submission',
     'apps.pre_application_form',
     'apps.i_20_upload',
