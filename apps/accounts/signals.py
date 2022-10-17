@@ -7,7 +7,6 @@ from post_office import mail
 from apps.accounts.models import ApplicationStatus, Profile
 import datetime
 import pytz
-import sys
 
 User = get_user_model()
 
@@ -72,7 +71,9 @@ def add_or_update_user_group(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def send_welcome_email(sender, instance, created, **kwargs):
 
-    if created and not (len(sys.argv) > 1 and sys.argv[1] == 'runserver'):
+    # if created and not (len(sys.argv) > 1 and sys.argv[1] == 'runserver'):
+
+    if created:
 
         current_time = datetime.datetime.now()
 
@@ -89,4 +90,4 @@ def send_welcome_email(sender, instance, created, **kwargs):
             'accounts/welcome-email.html').render(context)
 
         mail.send([instance.email], "Mamoon Rashid <no-reply@aemers.com>", subject="Welcome to app.aemers.com",
-                  html_message=template, priority='now')
+                  html_message=template)
