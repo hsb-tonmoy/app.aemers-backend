@@ -198,11 +198,11 @@ class ApplicationStatus(models.Model):
     application_started = models.BooleanField(
         _("Application Started?"), default=False)
     file_opening = models.PositiveSmallIntegerField(
-        _("File Opening"), choices=STEP_STATUS, default=0)
+        _("File Opening"), choices=STEP_STATUS, default=1)
     pre_application_form = models.PositiveSmallIntegerField(
-        _("Pre-Application Form"), choices=STEP_STATUS, default=0)
+        _("Pre-Application Form"), choices=STEP_STATUS, default=1)
     documents_upload = models.PositiveSmallIntegerField(
-        _("Documents Upload"), choices=STEP_STATUS, default=0)
+        _("Documents Upload"), choices=STEP_STATUS, default=1)
     application_submission = models.PositiveSmallIntegerField(
         _("Application Submission"), choices=STEP_STATUS, default=0)
     i_20_upload = models.PositiveSmallIntegerField(
