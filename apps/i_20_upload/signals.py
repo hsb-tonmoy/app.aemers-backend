@@ -27,7 +27,7 @@ def update_application_status(sender, instance, created, **kwargs):
 
 
 @receiver(pre_delete, sender=I_20_Upload)
-def update_application_status_if_deleted(sender, instance, created, **kwargs):
+def update_application_status_if_deleted(sender, instance, using, **kwargs):
     instance.user.application.i_20_upload = 0
     instance.user.save()
 
