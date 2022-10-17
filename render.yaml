@@ -8,7 +8,7 @@ services:
     name: appaemers
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn appaemers.wsgi:application"
+    startCommand: "gunicorn core.wsgi --log-file -"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
