@@ -18,3 +18,11 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
+  - type: cron
+    name: mail
+    env: python
+    schedule: "*/2 * * * *"
+    buildCommand: "./build.sh"
+    startCommand: "python manage.py send_queued_mail >> send_mail.log 2>&1"
+    envVars:
+      fromGroup: app.aemers
