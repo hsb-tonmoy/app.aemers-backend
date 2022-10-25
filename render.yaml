@@ -24,5 +24,3 @@ services:
     schedule: "*/2 * * * *"
     buildCommand: "./build.sh"
     startCommand: "python manage.py send_queued_mail >> send_mail.log 2>&1"
-    envVars:
-      fromGroup: "app.aemers"
