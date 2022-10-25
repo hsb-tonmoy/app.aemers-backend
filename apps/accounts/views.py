@@ -34,7 +34,6 @@ class AccountsViewset(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
     filter_backends = [filters.OrderingFilter, filters.SearchFilter]
     search_fields = ['first_name', 'last_name', 'email', ]
-    lookup_field = 'username'
     list_serializer_class = AccountsListSerializer
     update_serializer_class = AccountsUpdateSerializer
 
