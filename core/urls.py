@@ -23,6 +23,8 @@ urlpatterns = [
          namespace='visa_interview')),
     path('api/v1/', include('apps.pre_departure_session.urls',
          namespace='pre_departure_session')),
+    path('api/v1/', include('apps.mock_visa_interview.urls',
+         namespace='mock_visa_interview')),
     path('api/v1/auth/', include('dj_rest_auth.urls')),
     path('api/v1/auth/registration/', include('dj_rest_auth.registration.urls')),
     re_path(r'^login/forgot/confirm/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,32})/$',

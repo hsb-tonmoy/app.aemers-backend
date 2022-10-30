@@ -117,6 +117,7 @@ LOCAL_APPS = [
     'apps.visa_fee_payment',
     'apps.visa_interview',
     'apps.pre_departure_session',
+    'apps.mock_visa_interview',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
