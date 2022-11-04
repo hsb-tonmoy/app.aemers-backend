@@ -15,8 +15,15 @@ IMPORTANCE_RATINGS = (
 )
 
 
+def upload_to_path_question(instance, filename):
+    path = f'mock_visa_interview/questions/{instance.id}/{filename}'
+    return path
+
+
 class MockVisaInterviewQuestion(models.Model):
     question = models.TextField(verbose_name=_('Question'))
+    question_audio = models.FileField(
+        _("Question Audio"), upload_to=upload_to_path_question, null=True, blank=True)
     importance = models.PositiveSmallIntegerField(
         _("Importance"), choices=IMPORTANCE_RATINGS, default=1)
     created_by = models.ForeignKey(
