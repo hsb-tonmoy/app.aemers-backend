@@ -103,6 +103,7 @@ THIRD_PARTY_APPS = [
     'notifications',
     'imagekit',
     'django_messages_drf',
+    'django_q'
 ]
 
 LOCAL_APPS = [
@@ -349,3 +350,21 @@ else:
 # --------------------------------------------------------------------------
 
 DJANGO_NOTIFICATIONS_CONFIG = {'SOFT_DELETE': True}
+
+# --------------------------------------------------------------------------
+# Django-Q
+# --------------------------------------------------------------------------
+
+Q_CLUSTER = {
+    'name': 'app.aemers',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'orm': 'default',
+
+}

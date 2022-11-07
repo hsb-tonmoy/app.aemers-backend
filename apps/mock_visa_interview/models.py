@@ -66,6 +66,7 @@ class MockVisaInterviewAnswer(models.Model):
     question = models.ForeignKey(
         MockVisaInterviewQuestion, on_delete=models.CASCADE, related_name='answers')
     answer = models.FileField(_("Answer"), upload_to=upload_to_path)
+    final = models.BooleanField(default=False)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='mock_visa_interview_answers')
     created_at = models.DateTimeField(default=timezone.now)
