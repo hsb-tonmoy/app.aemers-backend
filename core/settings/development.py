@@ -188,7 +188,8 @@ POST_OFFICE = {
     'TEMPLATE_ENGINE': 'post_office',
     'MESSAGE_ID_ENABLED': True,
     'MAX_RETRIES': 4,
-    'RETRY_INTERVAL': timedelta(minutes=15),
+    'RETRY_INTERVAL': timedelta(minutes=5),
+    'DEFAULT_PRIORITY': 'now',
 }
 
 
