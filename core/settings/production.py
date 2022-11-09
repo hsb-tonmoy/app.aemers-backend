@@ -9,7 +9,7 @@ DEBUG = False
 SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', False)
 
 ALLOWED_HOSTS = ['api.aemers.com', '127.0.0.1', '0.0.0.0',
-                 'localhost', 'appaemers.herokuapp.com']
+                 'localhost', 'appaemers.onrender.com']
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
