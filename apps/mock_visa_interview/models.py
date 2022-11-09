@@ -16,6 +16,7 @@ IMPORTANCE_RATINGS = (
 
 
 def upload_to_path_question(instance, filename):
+
     path = f'mock_visa_interview/questions/{instance.id}/{filename}'
     return path
 
@@ -39,7 +40,16 @@ class MockVisaInterviewQuestion(models.Model):
         return self.question
 
 
+def upload_to_path_session(instance, filename):
+    file_name = filename.split(".")[0][:10]
+    extension = filename.split(".")[-1]
+    path = f'mock_visa_interview/sessions/{instance.session.id}/{file_name}.{extension}'
+    return path
+
+
 class MockVisaInterviewSession(models.Model):
+    full_recording = models.FileField(
+        _("Full Recording"), upload_to=upload_to_path_session, null=True, blank=True)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='mock_visa_interview_sessions')
     created_at = models.DateTimeField(default=timezone.now)
@@ -53,10 +63,10 @@ class MockVisaInterviewSession(models.Model):
         return f"{self.user.first_name} - {self.created_at}"
 
 
-def upload_to_path(instance, filename):
-    file_name = filename.split(".")[0][:30]
-    extension = filename.split(".")[-1]
-    path = f'mock_visa_interview/{instance.user.username}_{instance.user.id}/{file_name}.{extension}'
+def upload_to_path_answer(instance, filename):
+    file_name = filename.split(".")[0][:10]
+    # extension = filename.split(".")[-1]
+    path = f'mock_visa_interview/answers/{instance.session.id}/{instance.question.id}/{file_name}.wav'
     return path
 
 
@@ -65,7 +75,7 @@ class MockVisaInterviewAnswer(models.Model):
         MockVisaInterviewSession, on_delete=models.CASCADE, related_name='mock_visa_interview_answers')
     question = models.ForeignKey(
         MockVisaInterviewQuestion, on_delete=models.CASCADE, related_name='answers')
-    answer = models.FileField(_("Answer"), upload_to=upload_to_path)
+    answer = models.FileField(_("Answer"), upload_to=upload_to_path_answer)
     final = models.BooleanField(default=False)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='mock_visa_interview_answers')
