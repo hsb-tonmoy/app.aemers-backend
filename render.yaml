@@ -9,6 +9,11 @@ services:
     env: python
     buildCommand: "./build.sh"
     startCommand: "gunicorn core.wsgi --log-file -"
+  - type: worker
+    name: dj_queue
+    env: python
+    buildCommand: "./build.sh"
+    startCommand: "python manage.py qcluster"
   - type: cron
     name: mail
     env: python
