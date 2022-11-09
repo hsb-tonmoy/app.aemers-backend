@@ -18,7 +18,9 @@ def concatenate_audio(audio_clip_paths, output_path):
 def save_full_recording(session):
     audio_clip_paths = []
     for answer in MockVisaInterviewAnswer.objects.filter(session=session):
-        audio_clip_paths.append(answer.question.question_audio)
+        question_audio = answer.question.question_audio
+        if question_audio:
+            audio_clip_paths.append(question_audio)
         audio_clip_paths.append(answer.answer)
     output_path = f'mock_visa_interview/sessions/{session.id}/full_recording.wav'
     concatenate_audio(audio_clip_paths, output_path)
