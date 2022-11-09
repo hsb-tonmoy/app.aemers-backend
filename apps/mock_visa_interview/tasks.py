@@ -1,5 +1,5 @@
 import wave
-from .models import MockVisaInterviewAnswer, MockVisaInterviewSession
+from .models import MockVisaInterviewAnswer
 
 
 def concatenate_audio(audio_clip_paths, output_path):
@@ -15,8 +15,7 @@ def concatenate_audio(audio_clip_paths, output_path):
     output.close()
 
 
-def save_full_recording(ins_session):
-    session = MockVisaInterviewSession.objects.get(pk=ins_session)
+def save_full_recording(session):
     audio_clip_paths = []
     for answer in MockVisaInterviewAnswer.objects.filter(session=session):
         audio_clip_paths.append(answer.question.question_audio)

@@ -50,6 +50,7 @@ def upload_to_path_session(instance, filename):
 class MockVisaInterviewSession(models.Model):
     full_recording = models.FileField(
         _("Full Recording"), upload_to=upload_to_path_session, null=True, blank=True)
+    final = models.BooleanField(default=False)
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='mock_visa_interview_sessions')
     created_at = models.DateTimeField(default=timezone.now)
@@ -76,7 +77,7 @@ class MockVisaInterviewAnswer(models.Model):
     question = models.ForeignKey(
         MockVisaInterviewQuestion, on_delete=models.CASCADE, related_name='answers')
     answer = models.FileField(_("Answer"), upload_to=upload_to_path_answer)
-    final = models.BooleanField(default=False)
+
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='mock_visa_interview_answers')
     created_at = models.DateTimeField(default=timezone.now)
