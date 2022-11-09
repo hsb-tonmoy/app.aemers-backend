@@ -1,5 +1,6 @@
 import io
 import wave
+from django.core.files import File as DjangoFile
 from .models import MockVisaInterviewAnswer
 
 
@@ -27,5 +28,7 @@ def save_full_recording(session):
         audio_clip_paths.append(answer.answer)
     # output_path = f'mock_visa_interview/sessions/{session.id}/full_recording.wav'
     full_recording = concatenate_audio(audio_clip_paths)
-    session.full_recording = full_recording
+    full_recording_file = DjangoFile(
+        open(full_recording, mode='rb'), name='full_recording.wav')
+    session.full_recording = full_recording_file
     session.save()
