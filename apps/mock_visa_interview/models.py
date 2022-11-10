@@ -41,9 +41,8 @@ class MockVisaInterviewQuestion(models.Model):
 
 
 def upload_to_path_session(instance, filename):
-    file_name = filename.split(".")[0][:10]
     extension = filename.split(".")[-1]
-    path = f'mock_visa_interview/sessions/{instance.session.id}/{file_name}.{extension}'
+    path = f'mock_visa_interview/sessions/{instance.id}/{instance.created_at.strftime("%Y-%m-%d_%H-%M")}.{extension}'
     return path
 
 
@@ -66,8 +65,8 @@ class MockVisaInterviewSession(models.Model):
 
 def upload_to_path_answer(instance, filename):
     file_name = filename.split(".")[0][:10]
-    # extension = filename.split(".")[-1]
-    path = f'mock_visa_interview/answers/{instance.session.id}/{instance.question.id}/{file_name}.wav'
+    extension = filename.split(".")[-1]
+    path = f'mock_visa_interview/answers/{instance.session.id}/{instance.question.id}/{file_name}.{extension}'
     return path
 
 
