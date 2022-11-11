@@ -14,6 +14,8 @@ class PreDepartureSessionSerializer(ModelSerializer):
 
 
 class ParticipantSerializer(ModelSerializer):
+    pre_departure_session = PreDepartureSessionSerializer()
+
     class Meta:
         model = Participant
         fields = "__all__"
