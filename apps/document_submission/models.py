@@ -55,6 +55,7 @@ class Document(models.Model):
     description = models.TextField(blank=True)
     uploaded_at = models.DateTimeField(auto_now_add=True)
     document = models.FileField(upload_to=upload_to_path)
+    rejection_notes = models.TextField(blank=True)
     checked_by = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True, blank=True, related_name='checked_documents')
 
