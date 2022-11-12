@@ -4,6 +4,7 @@ from apps.i_20_upload.models import I_20_Upload
 from apps.ds_160.models import DS160
 from apps.sevis_payment.models import SEVIS_PAYMENT
 from apps.visa_fee_payment.models import VisaFeePayment
+from apps.visa_interview.models import VisaInterview
 from notifications.signals import notify
 
 from django.contrib.auth import get_user_model
@@ -54,3 +55,11 @@ def create_visa_fee_payment_if_not_exists(sender, instance, created, **kwargs):
         VisaFeePayment.objects.get(user=instance.user)
     except VisaFeePayment.DoesNotExist:
         VisaFeePayment.objects.create(user=instance.user)
+
+
+@receiver(post_save, sender=I_20_Upload)
+def create_visa_interview_if_not_exists(sender, instance, created, **kwargs):
+    try:
+        VisaInterview.objects.get(user=instance.user)
+    except VisaInterview.DoesNotExist:
+        VisaInterview.objects.create(user=instance.user)
