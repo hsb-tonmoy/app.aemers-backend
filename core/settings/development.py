@@ -357,13 +357,11 @@ DJANGO_NOTIFICATIONS_CONFIG = {'SOFT_DELETE': True}
 
 Q_CLUSTER = {
     'name': 'app.aemers',
-    'workers': 8,
     'recycle': 500,
-    'timeout': 60,
+    'timeout': 120,
+    'retry': 240,
     'compress': True,
-    'save_limit': 250,
-    'queue_limit': 500,
-    'cpu_affinity': 1,
+    'save_limit': 1000,
     'label': 'Django Q',
     'orm': 'default',
 
