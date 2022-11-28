@@ -21,7 +21,7 @@ class PreApplicationForm(models.Model):
 
     created = models.DateTimeField(_("Created at"), default=timezone.now)
 
-    # Personal Information
+    # Basic Information
 
     first_name = models.CharField(_("First Name"), max_length=255)
     middle_name = models.CharField(
@@ -29,6 +29,14 @@ class PreApplicationForm(models.Model):
     last_name = models.CharField(_("Last Name"), max_length=255)
     email = models.EmailField(_("Email"), max_length=255, unique=True)
     phone = models.CharField(_("Phone"), max_length=255)
+    desired_level_of_study = models.CharField(
+        _("Desired Level of Study"), max_length=255, blank=True, null=True)
+    desired_field_of_study = models.CharField(
+        _("Desired Field of Study"), max_length=255, blank=True, null=True)
+    total_number_of_visa_needed = models.CharField(
+        _("Total Number of Visa Needed"), max_length=5, default=1)
+
+    # Personal Information
 
     date_of_birth = models.DateField(_("Date of Birth"), blank=True, null=True)
     gender = models.CharField(
@@ -113,6 +121,16 @@ class PreApplicationForm(models.Model):
     emergency_contact_relationship = models.CharField(
         _("Emergency Contact Relationship"), max_length=255, null=True, blank=True)
 
+    # Dependents Information
+
+    dependents = models.JSONField(
+        _("Dependents"), null=True, blank=True)
+
+    # Parents' Information
+
+    parents = models.JSONField(
+        _("Parents"), null=True, blank=True)
+
     # Academic Qualifications
 
     # 2a) Education
@@ -127,20 +145,32 @@ class PreApplicationForm(models.Model):
     grade_10th_or_equivalent = models.JSONField(
         _("Grade 10th or equivalent"), null=True, blank=True)
 
+    grade_10th_subjects = models.JSONField(
+        _("Grade 10th Subjects"), null=True, blank=True)
+
     # 2c) Grade 12th or equivalent
 
     grade_12th_or_equivalent = models.JSONField(
         _("Grade 12th or equivalent"), null=True, blank=True)
+
+    grade_12th_subjects = models.JSONField(
+        _("Grade 12th Subjects"), null=True, blank=True)
 
     # 2d) Undergraduate Degree
 
     undergraduate_degree_or_equivalent = models.JSONField(
         _("Undergraduate Degree or equivalent"), null=True, blank=True)
 
+    undergraduate_degree_subjects = models.JSONField(
+        _("Undergraduate Degree Subjects"), null=True, blank=True)
+
     # 2e) Graduate Degree
 
     graduate_degree_or_equivalent = models.JSONField(
         _("Graduate Degree or equivalent"), null=True, blank=True)
+
+    graduate_degree_subjects = models.JSONField(
+        _("Graduate Degree Subjects"), null=True, blank=True)
 
     # Work Experience
 
@@ -203,6 +233,14 @@ class PreApplicationForm(models.Model):
         _("ACT Science"), max_length=5, null=True, blank=True)
     act_writing = models.CharField(
         _("ACT Writing"), max_length=5, null=True, blank=True)
+
+    # Extracurricular Activities
+
+    eca_specific_achievements = models.JSONField(
+        _("Specific Extracurricular Achievements"), null=True, blank=True)
+
+    eca_activities = models.JSONField(
+        _("Extracurricular Activities"), null=True, blank=True)
 
     # Gap Explanation
 
