@@ -13,6 +13,11 @@ class MockVisaInterviewQuestionViewset(viewsets.ModelViewSet):
     queryset = MockVisaInterviewQuestion.objects.all()
     serializer_class = MockVisaInterviewQuestionSerializer
 
+    # Override queryset to randomly select 10 objects from the database based on the importance field
+
+    def get_queryset(self):
+        return MockVisaInterviewQuestion.objects.order_by('?')[:10]
+
 
 class MockVisaInterviewSessionViewset(viewsets.ModelViewSet):
     queryset = MockVisaInterviewSession.objects.all()
